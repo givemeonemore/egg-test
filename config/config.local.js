@@ -22,13 +22,12 @@ module.exports = appInfo => {
     },
   };
   config.news = {
-    pageSize: 5,
-    serverUrl: 'https://hacker-news.firebaseio.com/v0',
+    parentId: '',
+    serverUrl: 'http://47.104.247.183:7001/inkwash/dos/list',
   };
 
   config.robot = {
     ua: [
-      /curl/i,
       /Baiduspider/i,
     ],
   };
