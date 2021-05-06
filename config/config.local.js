@@ -12,29 +12,9 @@ module.exports = appInfo => {
    **/
   const config = exports = {};
 
-  const cookie = 'SESSION=ef2655f6-0f03-4ec7-afe9-a3729d7b6106,redirect=/Portal,dist-token=ef2655f6-0f03-4ec7-afe9-a3729d7b6106,session-key=de11921a-f0f4-4365-a66b-d5903957ffc3,region-key=330500000000';
-
   // use for cookie sign key, should change to your own and keep security
-  config.keys = cookie;
-
-  config.cors = {
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
-    credentials: true,
-    origin: '*', // 允许的请求来源（* 表示允许所有的IP的请求 ）
-  };
-
-  config.cluster = {
-    listen: {
-      port: 7001,
-      hostname: '0.0.0.0', // 不建议设置 hostname 为 '0.0.0.0'，它将允许来自外部网络和来源的连接，请在知晓风险的情况下使用
-    },
-  };
-
-  config.security = {
-    csrf: {
-      enable: false,
-    },
-  };
+  console.log(appInfo);
+  config.keys = 'SESSION=NDJjYzgzODgtOTA5My00ZjljLTlkNjYtOTJjZDBmNDk4YjEw,dist-token=c3e1fa03-636d-45b9-9ee0-af31f4b28685';
 
   config.view = {
     defaultViewEngine: 'nunjucks',
@@ -43,7 +23,6 @@ module.exports = appInfo => {
     },
   };
   config.news = {
-    cookie,
     pageIndex: 1,
     pageSize: 10,
     planType: 100000,
@@ -53,7 +32,6 @@ module.exports = appInfo => {
 
   config.robot = {
     ua: [
-      /curl/i,
       /Baiduspider/i,
     ],
   };
@@ -61,7 +39,6 @@ module.exports = appInfo => {
   config.middleware = [
     'robot',
   ];
-  console.log(appInfo);
 
 
   // add your middleware config here
