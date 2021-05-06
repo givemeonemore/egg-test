@@ -26,7 +26,7 @@ module.exports = appInfo => {
   config.cluster = {
     listen: {
       port: 7001,
-      hostname: '0.0.0.0', // 不建议设置 hostname 为 '0.0.0.0'，它将允许来自外部网络和来源的连接，请在知晓风险的情况下使用
+      hostname: '127.0.0.1', // 不建议设置 hostname 为 '0.0.0.0'，它将允许来自外部网络和来源的连接，请在知晓风险的情况下使用
     },
   };
 
@@ -62,6 +62,28 @@ module.exports = appInfo => {
     'robot',
   ];
   console.log(appInfo);
+
+  config.mysql = {
+  // 单数据库信息配置
+    client: {
+      // host
+      host: '127.0.0.1',
+      // 端口号
+      port: '3306',
+      // 用户名
+      user: 'root',
+      // 密码
+      password: 'IloveYOU025848',
+      // 数据库名
+      database: 'mysql',
+      // 延时时间
+      connectTimeout: 60 * 60 * 10000,
+    },
+    // 是否加载到 app 上，默认开启
+    app: true,
+    // 是否加载到 agent 上，默认关闭
+    agent: false,
+  };
 
 
   // add your middleware config here

@@ -5,12 +5,11 @@ const Controller = require('egg').Controller;
 class UserController extends Controller {
   async index() {
     const { ctx } = this;
+    const code = ctx.SUCCESS_CODE;
+    const data = await this.app.mysql.get('user', { name: '张三' });
     ctx.body = {
-      user: {
-        name: 'zhangsan',
-        age: 18,
-        password: 'IloveYOU025848',
-      },
+      data,
+      code,
     };
   }
 }
