@@ -6,7 +6,7 @@ class UserController extends Controller {
   async index() {
     const { ctx } = this;
     const code = ctx.SUCCESS_CODE;
-    const data = await this.app.mysql.get('user', { name: '张三' });
+    const data = await this.app.mysql.select('user');
     ctx.body = {
       data,
       code,

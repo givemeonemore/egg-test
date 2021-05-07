@@ -75,9 +75,7 @@ module.exports = appInfo => {
       // 密码
       password: 'IloveYOU025848',
       // 数据库名
-      database: 'mysql',
-      // 延时时间
-      connectTimeout: 60 * 60 * 10000,
+      database: 'zhouran',
     },
     // 是否加载到 app 上，默认开启
     app: true,
