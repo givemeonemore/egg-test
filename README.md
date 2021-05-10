@@ -31,3 +31,5 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+.sequelizerc文件：用来对mysql数据库进行相关操作的，其内部添加部分命令用于创建各个类型的配置文件

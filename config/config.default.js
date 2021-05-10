@@ -2,6 +2,8 @@
 
 'use strict';
 
+const fecha = require('fecha');
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -81,6 +83,38 @@ module.exports = appInfo => {
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false,
+  };
+
+  config.sequelize = {
+    dialect: 'mysql',
+    host: '127.0.0.1',
+    port: 3306,
+    // 用户名
+    user: 'root',
+    // 密码
+    password: 'IloveYOU025848',
+    database: 'database_development',
+    timezone: '+08:00',
+    define: {
+      createdAt: 'createdTime',
+      updatedAt: 'lastModifiedTime',
+      freezeTableName: true,
+      underscored: false,
+      getterMethods: {
+        createdTime() {
+          const createdTime = this.getDataValue('createdTime');
+          if (createdTime) {
+            return fecha.format(createdTime, 'YYYY-MM-DD HH:mm:ss');
+          }
+        },
+        lastModifiedTime() {
+          const lastModifiedTime = this.getDataValue('lastModifiedTime');
+          if (lastModifiedTime) {
+            return fecha.format(lastModifiedTime, 'YYYY-MM-DD HH:mm:ss');
+          }
+        },
+      },
+    },
   };
 
 
