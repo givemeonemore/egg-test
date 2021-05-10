@@ -30,7 +30,6 @@ class GoodController extends Controller {
 
   async create() {
     const { name, img } = this.ctx.request.body;
-    console.log(this.ctx.model.Goods);
     const Good = await this.ctx.service.goods.createGood({ name, img });
     // const Good = await this.ctx.model.Goods.create({ name, img });
     this.ctx.status = 201;

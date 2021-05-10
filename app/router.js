@@ -13,7 +13,7 @@ module.exports = app => {
   router.post('/user/login', controller.user.login); // 用户登录
 
   // goods系列
-  router.resources('goods', '/goods/getGoods', controller.goods.getGoods);
+  router.resources('/goods', '/goods/getGoods', controller.goods.getGoods);
   router.post('/goods/create', controller.goods.create);
 };
 

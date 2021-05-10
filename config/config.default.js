@@ -3,6 +3,7 @@
 'use strict';
 
 const fecha = require('fecha');
+const isNumber = require('lodash/isNumber');
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -99,18 +100,28 @@ module.exports = appInfo => {
       createdAt: 'createdTime',
       updatedAt: 'lastModifiedTime',
       freezeTableName: true,
-      underscored: false,
+      timestamps: false,
+      underscored: true,
       getterMethods: {
         createdTime() {
           const createdTime = this.getDataValue('createdTime');
           if (createdTime) {
             return fecha.format(createdTime, 'YYYY-MM-DD HH:mm:ss');
           }
+          return fecha.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
         },
         lastModifiedTime() {
           const lastModifiedTime = this.getDataValue('lastModifiedTime');
           if (lastModifiedTime) {
             return fecha.format(lastModifiedTime, 'YYYY-MM-DD HH:mm:ss');
+          }
+          return fecha.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
+        },
+      },
+      setterMethods: {
+        version(value) {
+          if (isNumber(value)) {
+            this.setDataValue('version', value + 1);
           }
         },
       },

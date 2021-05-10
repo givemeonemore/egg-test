@@ -14,7 +14,7 @@ class GoodService extends Service {
    * @return {object|null}  - 查找结果
    */
   async getGoods(query) {
-    const data = await this.ctx.model.Good.findAll(query);
+    const data = await this.ctx.model.Goods.findAll(query);
     return data;
   }
   /**
@@ -23,12 +23,13 @@ class GoodService extends Service {
    * @return {string|null} - 商家uuid
    */
   async showGood(id) {
-    const data = this.ctx.model.Good.findByPk(id);
+    const data = this.ctx.model.Goods.findByPk(id);
     return data;
   }
 
   async createGood(params) {
-    const data = await this.ctx.model.Good.createNew(params);
+    console.log(params);
+    const data = await this.ctx.model.Goods.createNew(params);
     return data;
   }
 }
