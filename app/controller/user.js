@@ -5,19 +5,22 @@ const Controller = require('egg').Controller;
 class UserController extends Controller {
   async createUser() {
     const ctx = this.ctx;
-    const params = ctx.request.body || {
-      name: 'admin',
-      password: 'pass123',
-    };
-    await ctx.service.user.createUser(params);
-  }
-  async login() {
-    const { ctx } = this;
-    const code = ctx.SUCCESS_CODE;
-    const data = await this.app.mysql.select('user');
+    console.log(ctx.request.body);
+    const params = ctx.request.body;
+    const data = await ctx.service.user.createUser(params);
     ctx.body = {
       data,
-      code,
+      code: 200,
+    };
+  }
+  async login() {
+    const ctx = this.ctx;
+    console.log(ctx.request.body);
+    const params = ctx.request.body;
+    const data = await ctx.service.user.getUserByLogin(params);
+    ctx.body = {
+      data,
+      code: 200,
     };
   }
 }

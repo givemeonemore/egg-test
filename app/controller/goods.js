@@ -11,9 +11,9 @@ function toInt(str) {
 
 class GoodController extends Controller {
   async getGoods() {
-    const query = { limit: toInt(this.ctx.query.limit), offset: toInt(this.ctx.query.offset) };
+    const query = { limit: toInt(this.ctx.query.limit) || 10, offset: toInt(this.ctx.query.offset) || 0 };
     const data = await this.ctx.service.goods.getGoods(query);
-    this.success(data);
+    // this.success(data);
     this.ctx.body = { code: this.ctx.SUCCESS_CODE, data };
     this.ctx.status = 200;
     // ctx.body = await ctx.model.Good.findAll(query);
@@ -22,7 +22,7 @@ class GoodController extends Controller {
   async show() {
     const id = this.ctx.params.id;
     const data = await this.ctx.service.goods.showGood(toInt(id));
-    this.success(data);
+    // this.success(data);
     this.ctx.body = { code: this.ctx.SUCCESS_CODE, data };
     this.ctx.status = 200;
     // ctx.body = await ctx.model.Good.findByPk(toInt(ctx.params.id));

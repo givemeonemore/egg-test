@@ -17,7 +17,8 @@
     "lodash": "^4.17.21",
     "md5": "^2.3.0",
     "moment": "^2.29.1",
-    "mysql2": "^2.2.5"
+    "mysql2": "^2.2.5",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -33,9 +34,9 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-init",
+    "start": "npx sequelize db:migrate && egg-scripts start --daemon --title=egg-server-init",
     "stop": "egg-scripts stop --title=egg-server-init",
-    "dev": "egg-bin dev",
+    "dev": "npx sequelize db:migrate && egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",

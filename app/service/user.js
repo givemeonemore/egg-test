@@ -6,11 +6,16 @@ const Service = require('egg').Service;
 class UserService extends Service {
   // 创建默认用户
   async createUser(params) {
-    await this.app.mysql.insert('user', { name: params.name, password: md5(params.password) });
+    const data = await this.getUserByLogin(params);
+    if (data.length) {
+      return '已存在相同用户名';
+    }
+    return await this.ctx.model.Users.create({ name: params.name, password: md5(params.password) });
   }
   // 用户登录，验证账号和密码
-  async getAdminByLogin(userName, password) {
-    return await this.app.mysql.get('user', { userName, password: md5(password) });
+  async getUserByLogin({ name: userName, password }) {
+    const data = await this.ctx.model.Users.findAll({ where: { name: userName, password: md5(password) } });
+    return data;
   }
 
   /**

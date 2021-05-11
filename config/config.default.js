@@ -15,7 +15,7 @@ module.exports = appInfo => {
    **/
   const config = exports = {};
 
-  const cookie = 'SESSION=ef2655f6-0f03-4ec7-afe9-a3729d7b6106,redirect=/Portal,dist-token=ef2655f6-0f03-4ec7-afe9-a3729d7b6106,session-key=de11921a-f0f4-4365-a66b-d5903957ffc3,region-key=330500000000';
+  const cookie = appInfo.name + '_arcvue';
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = cookie;
@@ -64,7 +64,6 @@ module.exports = appInfo => {
   config.middleware = [
     'robot',
   ];
-  console.log(appInfo);
 
   config.mysql = {
   // 单数据库信息配置
@@ -78,7 +77,7 @@ module.exports = appInfo => {
       // 密码
       password: 'IloveYOU025848',
       // 数据库名
-      database: 'zhouran',
+      database: 'database_development',
     },
     // 是否加载到 app 上，默认开启
     app: true,
@@ -97,23 +96,23 @@ module.exports = appInfo => {
     database: 'database_development',
     timezone: '+08:00',
     define: {
-      createdAt: 'createdTime',
-      updatedAt: 'lastModifiedTime',
+      createdAt: 'createdtime',
+      updatedAt: 'lastmodifiedtime',
       freezeTableName: true,
       timestamps: false,
       underscored: true,
       getterMethods: {
-        createdTime() {
-          const createdTime = this.getDataValue('createdTime');
-          if (createdTime) {
-            return fecha.format(createdTime, 'YYYY-MM-DD HH:mm:ss');
+        createdtime() {
+          const createdtime = this.getDataValue('createdtime');
+          if (createdtime) {
+            return fecha.format(createdtime, 'YYYY-MM-DD HH:mm:ss');
           }
           return fecha.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
         },
-        lastModifiedTime() {
-          const lastModifiedTime = this.getDataValue('lastModifiedTime');
-          if (lastModifiedTime) {
-            return fecha.format(lastModifiedTime, 'YYYY-MM-DD HH:mm:ss');
+        lastmodifiedtime() {
+          const lastmodifiedtime = this.getDataValue('lastmodifiedtime');
+          if (lastmodifiedtime) {
+            return fecha.format(lastmodifiedtime, 'YYYY-MM-DD HH:mm:ss');
           }
           return fecha.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
         },
@@ -123,6 +122,12 @@ module.exports = appInfo => {
           if (isNumber(value)) {
             this.setDataValue('version', value + 1);
           }
+        },
+        createdtime(value) {
+          this.setDataValue('createdtime', value);
+        },
+        lastmodifiedtime(value) {
+          this.setDataValue('lastmodifiedtime', value);
         },
       },
     },

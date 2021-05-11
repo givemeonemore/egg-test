@@ -36,7 +36,6 @@ class NewsService extends Service {
         },
       });
     }
-    console.log(idList);
 
     return idList;
 

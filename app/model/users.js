@@ -7,7 +7,7 @@ function generatorUUID() {
 
 module.exports = app => {
   const { STRING, INTEGER, DATE } = app.Sequelize;
-  const Goods = app.model.define('goods', {
+  const User = app.model.define('users', {
     id: { type: INTEGER, autoIncrement: true },
     uuid: {
       type: STRING(38),
@@ -19,8 +19,8 @@ module.exports = app => {
       type: STRING(30),
       allowNull: false,
     },
-    img: {
-      type: STRING(1234),
+    password: {
+      type: STRING(150),
       allowNull: false,
     },
     createdtime: {
@@ -33,5 +33,5 @@ module.exports = app => {
     },
   });
 
-  return Goods;
+  return User;
 };
